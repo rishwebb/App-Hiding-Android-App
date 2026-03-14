@@ -38,6 +38,7 @@ fun AppDrawer(
     iconBitmaps: Map<String, Bitmap>,
     onLaunchApp: (String) -> Unit,
     onAppInfo: (String) -> Unit,
+    onUninstallApp: (String) -> Unit,
     onSearchChange: (String) -> Unit,
     onDismiss: () -> Unit,
     onAddToHome: (String) -> Unit
@@ -154,6 +155,10 @@ fun AppDrawer(
                             onAppInfo = {
                                 onDismiss()
                                 onAppInfo(app.packageName)
+                            },
+                            onUninstall = {
+                                onDismiss()
+                                onUninstallApp(app.packageName)
                             },
                             isDragging = false,
                             onDragStart = { },

@@ -221,7 +221,8 @@ fun LauncherScreen(
             onClose = { viewModel.closeVault() },
             onLaunchApp = { viewModel.launchApp(it) },
             onUnhideApp = { viewModel.unhideApp(it) },
-            onHideApp = { viewModel.hideApp(it) }
+            onHideApp = { viewModel.hideApp(it) },
+            onUninstallApp = { viewModel.uninstallApp(it) }
         )
 
         // App Drawer overly
@@ -235,6 +236,7 @@ fun LauncherScreen(
             iconBitmaps = iconBitmaps,
             onLaunchApp = { viewModel.launchApp(it) },
             onAppInfo = { viewModel.openAppInfo(it) },
+            onUninstallApp = { viewModel.uninstallApp(it) },
             onSearchChange = { viewModel.setSearchQuery(it) },
             onDismiss = { viewModel.closeAppLibrary() },
             onAddToHome = { pkg -> viewModel.addAppToGrid(pkg) }

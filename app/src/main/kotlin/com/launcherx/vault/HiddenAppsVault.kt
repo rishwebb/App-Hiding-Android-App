@@ -53,6 +53,7 @@ fun HiddenAppsVault(
     onLaunchApp: (String) -> Unit,
     onUnhideApp: (String) -> Unit,
     onHideApp: (String) -> Unit,
+    onUninstallApp: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -483,7 +484,7 @@ fun HiddenAppsVault(
                                         iconBitmap = iconBitmaps[app.packageName],
                                         onLaunch = { onLaunchApp(app.packageName) },
                                         onRemove = { onUnhideApp(app.packageName) },
-                                        onUninstall = { }
+                                        onUninstall = { onUninstallApp(app.packageName) }
                                     )
                                 }
                             }
