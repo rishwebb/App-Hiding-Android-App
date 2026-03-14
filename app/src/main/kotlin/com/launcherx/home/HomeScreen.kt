@@ -14,12 +14,8 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.ui.platform.LocalContext
-import android.widget.Toast
-import android.content.Intent
-import android.provider.Settings
+import androidx.compose.ui.platform.LocalDensity
+import kotlin.math.roundToInt
 import com.launcherx.LauncherViewModel
 import com.launcherx.dock.DockController
 import com.launcherx.widgets.TimeWidgetOverlay
@@ -34,9 +30,16 @@ fun HomeScreen(
     timeWidgetOffsetY: Float,
     timeWidgetScale: Float,
     timeWidgetColor: Long,
+    weatherEnabled: Boolean,
+    weatherLocation: String,
+    weatherTemperature: String,
+    weatherCondition: String,
+    isWeatherLoading: Boolean,
     onTimeWidgetOffsetChange: (Float, Float) -> Unit,
     onTimeWidgetScaleChange: (Float) -> Unit,
     onTimeWidgetColorChange: (Long) -> Unit,
+    onClockClick: () -> Unit,
+    onWeatherClick: () -> Unit,
     onLaunchApp: (String) -> Unit,
     onAppInfo: (String) -> Unit,
     onRemoveApp: (String) -> Unit,
@@ -48,38 +51,29 @@ fun HomeScreen(
     onDockBoundsChanged: (Rect) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current
-    
+    var timeWidgetBounds by remember { mutableStateOf(Rect.Zero) }
+    val density = LocalDensity.current
+    val homeTopInset = with(density) {
+        if (timeWidgetBounds != Rect.Zero) {
+            timeWidgetBounds.bottom.toDp() + 20.dp
+        } else {
+            132.dp
+        }
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onDoubleTap = {
-                        try {
-                            val intent = Intent(Settings.ACTION_DISPLAY_SETTINGS)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            context.startActivity(intent)
-                            Toast.makeText(context, "Adjust Screen Timeout here to sleep faster", Toast.LENGTH_SHORT).show()
-                        } catch (e: Exception) {
-                            Toast.makeText(context, "Cannot open display settings", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                )
-            }
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            // Top spacing for time widget area
-            Spacer(modifier = Modifier.height(260.dp))
-
-            // Main content area — single page only (page 0)
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
             ) {
+                // Keep the grid out of the clock widget area while using the remaining space fully.
                 HomeScreenPage(
                     apps = homeScreenApps[0] ?: emptyList(),
                     iconBitmaps = iconBitmaps,
@@ -91,7 +85,10 @@ fun HomeScreen(
                     onDragStart = onDragStart,
                     onDrag = onDrag,
                     onDragEnd = onDragEnd,
-                    onGridBoundsChanged = onHomeGridBoundsChanged
+                    onGridBoundsChanged = onHomeGridBoundsChanged,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = homeTopInset)
                 )
             }
 
@@ -117,9 +114,17 @@ fun HomeScreen(
             offsetY = timeWidgetOffsetY,
             scale = timeWidgetScale,
             widgetColor = Color(timeWidgetColor),
+            weatherEnabled = weatherEnabled,
+            weatherLocation = weatherLocation,
+            weatherTemperature = weatherTemperature,
+            weatherCondition = weatherCondition,
+            isWeatherLoading = isWeatherLoading,
             onOffsetChange = onTimeWidgetOffsetChange,
             onScaleChange = onTimeWidgetScaleChange,
-            onColorChange = onTimeWidgetColorChange
+            onColorChange = onTimeWidgetColorChange,
+            onClockClick = onClockClick,
+            onWeatherClick = onWeatherClick,
+            onBoundsChanged = { timeWidgetBounds = it }
         )
     }
 }
@@ -139,7 +144,7 @@ fun HomeScreenPage(
     onGridBoundsChanged: (Rect) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp)
@@ -149,35 +154,49 @@ fun HomeScreenPage(
                 })
             }
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(4),
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(top = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(0.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            userScrollEnabled = false
+        val cellWidth = maxWidth / 4
+        val cellHeight = maxHeight / 6
+        val iconSizeDp = minOf(cellWidth * 0.72f, cellHeight * 0.58f).coerceIn(40.dp, 56.dp)
+        val cellContentHeight = cellHeight.coerceAtLeast(64.dp)
+
+        Column(
+            modifier = Modifier.fillMaxSize()
         ) {
-            items(
-                count = 24, // Fixed 4×6 grid
-                key = { it }
-            ) { index ->
-                val app = apps.getOrNull(index)
-                if (app != null) {
-                    IconCell(
-                        app = app,
-                        iconBitmap = iconBitmaps[app.packageName],
-                        isDragging = dragState.draggedApp?.packageName == app.packageName,
-                        onLaunch = { onLaunchApp(app.packageName) },
-                        onAppInfo = { onAppInfo(app.packageName) },
-                        onRemove = { onRemoveApp(app.packageName) },
-                        onUninstall = { onUninstallApp(app.packageName) },
-                        onDragStart = { onDragStart(app, it) },
-                        onDrag = onDrag,
-                        onDragEnd = onDragEnd
-                    )
-                } else {
-                    // Empty slot placeholder to maintain absolute coordinates
-                    Box(modifier = Modifier.size(64.dp))
+            repeat(6) { row ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
+                    repeat(4) { col ->
+                        val index = row * 4 + col
+                        val app = apps.getOrNull(index)
+
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxHeight(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            if (app != null) {
+                                IconCell(
+                                    app = app,
+                                    iconBitmap = iconBitmaps[app.packageName],
+                                    iconSize = iconSizeDp.value.roundToInt(),
+                                    containerWidth = cellWidth,
+                                    containerHeight = cellContentHeight,
+                                    isDragging = dragState.draggedApp?.packageName == app.packageName,
+                                    onLaunch = { onLaunchApp(app.packageName) },
+                                    onAppInfo = { onAppInfo(app.packageName) },
+                                    onRemove = { onRemoveApp(app.packageName) },
+                                    onUninstall = { onUninstallApp(app.packageName) },
+                                    onDragStart = { onDragStart(app, it) },
+                                    onDrag = onDrag,
+                                    onDragEnd = onDragEnd
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }

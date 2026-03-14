@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.PointerEventPass
@@ -83,6 +82,11 @@ fun LauncherScreen(
     val timeWidgetOffsetY by viewModel.timeWidgetOffsetY.collectAsStateWithLifecycle()
     val timeWidgetScale by viewModel.timeWidgetScale.collectAsStateWithLifecycle()
     val timeWidgetColor by viewModel.timeWidgetColor.collectAsStateWithLifecycle()
+    val weatherEnabled by viewModel.weatherEnabled.collectAsStateWithLifecycle()
+    val weatherLocation by viewModel.weatherLocation.collectAsStateWithLifecycle()
+    val weatherTemperature by viewModel.weatherTemperature.collectAsStateWithLifecycle()
+    val weatherCondition by viewModel.weatherCondition.collectAsStateWithLifecycle()
+    val isWeatherLoading by viewModel.isWeatherLoading.collectAsStateWithLifecycle()
 
     // Re-check default status on resume
     val lifecycleOwner = androidx.compose.ui.platform.LocalLifecycleOwner.current
@@ -90,6 +94,7 @@ fun LauncherScreen(
         val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
             if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
                 viewModel.checkDefaultLauncher()
+                viewModel.refreshWeatherIfEnabled()
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
@@ -116,11 +121,21 @@ fun LauncherScreen(
                 if (isVaultOpen || isAppDrawerOpen || isSettingsOpen || dragState.isDragging) return@pointerInput
                 
                 awaitEachGesture {
-                    awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
+                    val firstDown = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Main)
+                    val startedInDock = viewModel.dockBounds.contains(firstDown.position)
                     var totalZoom = 1f
                     var totalPanY = 0f
+                    var suppressAppDrawerForGesture = false
+                    var gestureHandled = false
                     do {
-                        val event = awaitPointerEvent(PointerEventPass.Initial)
+                        val event = awaitPointerEvent(PointerEventPass.Main)
+                        if (event.changes.any { it.isConsumed }) {
+                            continue
+                        }
+                        if (event.changes.count { it.pressed } > 1) {
+                            suppressAppDrawerForGesture = true
+                            totalPanY = 0f
+                        }
                         val zoom = event.calculateZoom()
                         val pan = event.calculatePan()
                         
@@ -129,20 +144,25 @@ fun LauncherScreen(
                         
                         // Zoom out (pinch spread) opens vault
                         if (totalZoom > 1.3f) {
+                            suppressAppDrawerForGesture = true
+                            gestureHandled = true
                             viewModel.openVault()
                             totalZoom = 1f
+                            totalPanY = 0f
                         }
                         
-                        // Vertical pan up opens drawer - ONLY if we aren't dragging and we didn't start the swipe from the Dock (Y > ScreenHeight - 120dp)
-                        val screenHeight = with(androidx.compose.ui.platform.LocalDensity.current) { 
-                            androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp.dp.toPx() 
-                        }
-                        val isFromDock = event.changes.first().position.y > (screenHeight - 300f)
-
-                        if (!dragState.isDragging && !isFromDock && totalPanY < -60f && Math.abs(pan.x) < Math.abs(pan.y)) {
+                        if (!gestureHandled &&
+                            !dragState.isDragging &&
+                            !startedInDock &&
+                            !suppressAppDrawerForGesture &&
+                            totalPanY < -18f &&
+                            pan.y < -4f &&
+                            Math.abs(pan.x) < Math.abs(pan.y)
+                        ) {
                             viewModel.openAppLibrary()
+                            gestureHandled = true
                             totalPanY = 0f
-                        } else if (totalPanY > 60f) {
+                        } else if (totalPanY > 18f) {
                             totalPanY = 0f
                         }
                     } while (event.changes.any { it.pressed })
@@ -161,9 +181,16 @@ fun LauncherScreen(
             timeWidgetOffsetY = timeWidgetOffsetY,
             timeWidgetScale = timeWidgetScale,
             timeWidgetColor = timeWidgetColor,
+            weatherEnabled = weatherEnabled,
+            weatherLocation = weatherLocation,
+            weatherTemperature = weatherTemperature,
+            weatherCondition = weatherCondition,
+            isWeatherLoading = isWeatherLoading,
             onTimeWidgetOffsetChange = { x, y -> viewModel.updateTimeWidgetOffset(x, y) },
             onTimeWidgetScaleChange = { scale -> viewModel.updateTimeWidgetScale(scale) },
             onTimeWidgetColorChange = { colorLong -> viewModel.updateTimeWidgetColor(colorLong) },
+            onClockClick = { viewModel.openClockApp() },
+            onWeatherClick = { viewModel.openWeatherApp() },
             onLaunchApp = { viewModel.launchApp(it) },
             onAppInfo = { viewModel.openAppInfo(it) },
             onRemoveApp = { viewModel.removeAppFromHome(it) },

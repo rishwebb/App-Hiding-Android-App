@@ -30,6 +30,7 @@ class LauncherRepository @Inject constructor(
     suspend fun insertDockApp(dockApp: DockAppEntity) = dockAppDao.insertDockApp(dockApp)
     suspend fun insertDockApps(dockApps: List<DockAppEntity>) = dockAppDao.insertDockApps(dockApps)
     suspend fun deleteDockApp(dockApp: DockAppEntity) = dockAppDao.deleteDockApp(dockApp)
+    suspend fun deleteDockAppsByPackageName(packageName: String) = dockAppDao.deleteByPackageName(packageName)
     suspend fun deleteAllDockApps() = dockAppDao.deleteAll()
 
     // Widgets

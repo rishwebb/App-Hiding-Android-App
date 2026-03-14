@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.launcherx.animations.AnimationSystem
 import com.launcherx.ui.theme.LauncherColors
@@ -43,6 +44,8 @@ fun IconCell(
     iconBitmap: Bitmap?,
     showLabel: Boolean = true,
     iconSize: Int = 60,
+    containerWidth: Dp = 80.dp,
+    containerHeight: Dp = if (showLabel) 95.dp else 75.dp,
     isDragging: Boolean = false,
     onLaunch: () -> Unit,
     onRemove: () -> Unit = {},
@@ -69,12 +72,10 @@ fun IconCell(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = if (showLabel) Arrangement.Top else Arrangement.Center,
         modifier = Modifier
-            .width(80.dp)
-            .height(if (showLabel) 95.dp else 75.dp)
-            .onGloballyPositioned { coordinates ->
-                globalPosition = coordinates.positionInRoot()
-            }
+            .width(containerWidth)
+            .height(containerHeight)
             .alpha(if (isDragging) 0f else 1f)
             .graphicsLayer {
                 scaleX = scale
@@ -89,6 +90,9 @@ fun IconCell(
             Box(
                 modifier = Modifier
                     .size(iconSize.dp)
+                    .onGloballyPositioned { coordinates ->
+                        globalPosition = coordinates.positionInRoot()
+                    }
                     .shadow(
                         elevation = 4.dp,
                         shape = RoundedCornerShape(27),
@@ -203,7 +207,7 @@ fun IconCell(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.widthIn(max = 76.dp)
+                modifier = Modifier.width(containerWidth)
             )
         }
     }

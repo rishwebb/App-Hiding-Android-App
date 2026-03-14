@@ -1,7 +1,9 @@
 package com.launcherx
 
 import android.app.Application
+import android.app.admin.DevicePolicyManager
 import android.content.BroadcastReceiver
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -9,6 +11,9 @@ import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
+import android.provider.AlarmClock
+import android.widget.Toast
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.AndroidViewModel
@@ -17,11 +22,16 @@ import com.launcherx.data.entities.*
 import com.launcherx.data.repository.LauncherRepository
 import com.launcherx.home.AppInfo
 import com.launcherx.icons.IconPackManager
+import com.launcherx.lockscreen.LockDeviceAdminReceiver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 @HiltViewModel
 class LauncherViewModel @Inject constructor(
@@ -32,6 +42,9 @@ class LauncherViewModel @Inject constructor(
 
     // SharedPreferences for time widget
     private val prefs: SharedPreferences = app.getSharedPreferences("launcher_prefs", Context.MODE_PRIVATE)
+    private val layoutSeededKey = "layout_seeded"
+    private val devicePolicyManager = app.getSystemService(DevicePolicyManager::class.java)
+    private val deviceAdminComponent = ComponentName(app, LockDeviceAdminReceiver::class.java)
 
     // UI State
     private val _currentPage = MutableStateFlow(0)
@@ -67,6 +80,21 @@ class LauncherViewModel @Inject constructor(
 
     private val _timeWidgetColor = MutableStateFlow(prefs.getLong("widget_color", 0xFFFFFFFF))
     val timeWidgetColor: StateFlow<Long> = _timeWidgetColor.asStateFlow()
+
+    private val _weatherEnabled = MutableStateFlow(prefs.getBoolean("weather_enabled", false))
+    val weatherEnabled: StateFlow<Boolean> = _weatherEnabled.asStateFlow()
+
+    private val _weatherLocation = MutableStateFlow(prefs.getString("weather_location", "") ?: "")
+    val weatherLocation: StateFlow<String> = _weatherLocation.asStateFlow()
+
+    private val _weatherTemperature = MutableStateFlow(prefs.getString("weather_temperature", "") ?: "")
+    val weatherTemperature: StateFlow<String> = _weatherTemperature.asStateFlow()
+
+    private val _weatherCondition = MutableStateFlow(prefs.getString("weather_condition", "") ?: "")
+    val weatherCondition: StateFlow<String> = _weatherCondition.asStateFlow()
+
+    private val _isWeatherLoading = MutableStateFlow(false)
+    val isWeatherLoading: StateFlow<Boolean> = _isWeatherLoading.asStateFlow()
 
     // App data
     private val _allApps = MutableStateFlow<List<AppInfo>>(emptyList())
@@ -142,6 +170,7 @@ class LauncherViewModel @Inject constructor(
     init {
         loadInstalledApps()
         checkDefaultLauncher()
+        refreshWeatherIfEnabled()
 
         // Register package receiver
         val filter = IntentFilter().apply {
@@ -221,46 +250,24 @@ class LauncherViewModel @Inject constructor(
             // Clean up old virtual settings ghost app
             try {
                 repository.deleteIconByPackageName("com.launcherx.settings")
-                repository.deleteDockApp(DockAppEntity(0, "com.launcherx.settings"))
-                repository.deleteDockApp(DockAppEntity(1, "com.launcherx.settings"))
-                repository.deleteDockApp(DockAppEntity(2, "com.launcherx.settings"))
-                repository.deleteDockApp(DockAppEntity(3, "com.launcherx.settings"))
+                repository.deleteDockAppsByPackageName("com.launcherx.settings")
             } catch (_: Exception) {}
 
-            // Initialize positions if empty
             val positions = repository.getAllIconPositions().first()
-            if (positions.isEmpty() && apps.isNotEmpty()) {
-                val nonHiddenApps = apps.filter { it.packageName !in hiddenPackages }
-                initializeDefaultLayout(nonHiddenApps)
-                // Force an immediate reload of the layout
-                val initialDock = repository.getAllDockApps().first()
-                val initialGrid = repository.getAllIconPositions().first()
-                
-                val allAppsMap = apps.associateBy { it.packageName }
-                
-                // Dock
-                val dock = MutableList<AppInfo?>(5) { null }
-                initialDock.forEach { entity ->
-                    if (entity.slot in 0..4) dock[entity.slot] = allAppsMap[entity.packageName]
-                }
-                _dockApps.value = dock
-                
-                // Grid
-                val pages = mutableMapOf<Int, MutableList<AppInfo?>>()
-                val maxPage = initialGrid.maxOfOrNull { it.page } ?: 1
-                for (p in 1..maxPage) {
-                    pages[p] = MutableList(24) { null }
-                }
-                initialGrid.forEach { pos ->
-                    allAppsMap[pos.packageName]?.let { appInfo ->
-                        val list = pages.getOrPut(pos.page) { MutableList(24) { null } }
-                        val index = (pos.row * 4 + pos.col).coerceIn(0, 23)
-                        list[index] = appInfo
-                    }
-                }
-                _homeScreenApps.value = pages
-            }
-            
+            val dockApps = repository.getAllDockApps().first()
+            val nonHiddenApps = apps.filter { it.packageName !in hiddenPackages }
+            val (initialPositions, initialDockApps) = ensureLayoutSeeded(
+                positions = positions,
+                dockApps = dockApps,
+                availableApps = nonHiddenApps
+            )
+            syncLayoutState(
+                positions = initialPositions,
+                dockEntities = initialDockApps,
+                allApps = apps,
+                hiddenPackageNames = hiddenPackages
+            )
+
             // Critical: Only start observing the UI flows now that _allApps is loaded
             observeDatabase()
         }
@@ -270,65 +277,22 @@ class LauncherViewModel @Inject constructor(
         viewModelScope.launch {
             // Observe icon positions
             repository.getAllIconPositions().collect { positions ->
-                val allAppsMap = _allApps.value.associateBy { it.packageName }
-                val pages = mutableMapOf<Int, MutableList<AppInfo?>>()
-                val maxPage = positions.maxOfOrNull { it.page } ?: 1
-                for (p in 1..maxPage) {
-                    pages[p] = MutableList(24) { null }
-                }
-                positions.forEach { pos ->
-                    allAppsMap[pos.packageName]?.let { appInfo ->
-                        val list = pages.getOrPut(pos.page) { MutableList(24) { null } }
-                        val index = (pos.row * 4 + pos.col).coerceIn(0, 23)
-                        list[index] = appInfo
-                    }
-                }
-                _homeScreenApps.value = pages
+                _homeScreenApps.value = buildHomeScreenPages(
+                    positions = positions,
+                    allApps = _allApps.value,
+                    hiddenPackageNames = _hiddenApps.value.map { it.packageName }.toSet()
+                )
             }
         }
 
         viewModelScope.launch {
             // Observe dock apps
             repository.getAllDockApps().collect { dockEntities ->
-                val allAppsMap = _allApps.value.associateBy { it.packageName }
-                val dock = MutableList<AppInfo?>(5) { null }
-                dockEntities.forEach { entity ->
-                    if (entity.slot in 0..4) {
-                        dock[entity.slot] = allAppsMap[entity.packageName]
-                    }
-                }
-                _dockApps.value = dock
-                
-                // Auto-populate dock if completely empty
-                if (dock.all { it == null } && _allApps.value.isNotEmpty()) {
-                    val dockCandidates = listOf(
-                        "com.android.dialer", "com.google.android.dialer",
-                        "net.one97.paytm",
-                        "com.whatsapp",
-                        "com.railyatri.in", "in.gov.railtel.railone", "in.gov.railtel.RailOne",
-                        "com.android.camera", "com.google.android.GoogleCamera", "com.android.camera2"
-                    )
-                    val availableApps = _allApps.value
-                    val dockFill = mutableListOf<String>()
-                    for (candidate in dockCandidates) {
-                        if (availableApps.any { it.packageName == candidate } && dockFill.size < 5) {
-                            dockFill.add(candidate)
-                        }
-                    }
-                    // Fill remaining slots with first available apps
-                    for (a in availableApps) {
-                        if (dockFill.size >= 5) break
-                        if (a.packageName !in dockFill && a.packageName != "com.launcherx.settings") {
-                            dockFill.add(a.packageName)
-                        }
-                    }
-                    val entities = dockFill.take(5).mapIndexed { index, pkg ->
-                        DockAppEntity(slot = index, packageName = pkg)
-                    }
-                    viewModelScope.launch(Dispatchers.IO) {
-                        repository.insertDockApps(entities)
-                    }
-                }
+                _dockApps.value = buildDockApps(
+                    dockEntities = dockEntities,
+                    allApps = _allApps.value,
+                    hiddenPackageNames = _hiddenApps.value.map { it.packageName }.toSet()
+                )
             }
         }
 
@@ -336,7 +300,14 @@ class LauncherViewModel @Inject constructor(
             // Observe hidden apps
             repository.getAllHiddenApps().collect { hiddenEntities ->
                 val allAppsMap = _allApps.value.associateBy { it.packageName }
+                val hiddenPackages = hiddenEntities.map { it.packageName }.toSet()
                 _hiddenApps.value = hiddenEntities.mapNotNull { allAppsMap[it.packageName] }
+                _homeScreenApps.value = _homeScreenApps.value.mapValues { (_, apps) ->
+                    apps.map { appInfo -> appInfo?.takeUnless { it.packageName in hiddenPackages } }
+                }
+                _dockApps.value = _dockApps.value.map { appInfo ->
+                    appInfo?.takeUnless { it.packageName in hiddenPackages }
+                }
             }
         }
     }
@@ -370,6 +341,81 @@ class LauncherViewModel @Inject constructor(
         // Home screen grid is left completely empty as requested by user
     }
 
+    private suspend fun ensureLayoutSeeded(
+        positions: List<IconPositionEntity>,
+        dockApps: List<DockAppEntity>,
+        availableApps: List<AppInfo>
+    ): Pair<List<IconPositionEntity>, List<DockAppEntity>> {
+        val hasSavedLayout = positions.isNotEmpty() || dockApps.isNotEmpty()
+        if (hasSavedLayout) {
+            markLayoutSeeded()
+            return positions to dockApps
+        }
+
+        if (!prefs.getBoolean(layoutSeededKey, false) && availableApps.isNotEmpty()) {
+            initializeDefaultLayout(availableApps)
+            markLayoutSeeded()
+            return repository.getAllIconPositions().first() to repository.getAllDockApps().first()
+        }
+
+        return positions to dockApps
+    }
+
+    private fun markLayoutSeeded() {
+        if (!prefs.getBoolean(layoutSeededKey, false)) {
+            prefs.edit().putBoolean(layoutSeededKey, true).apply()
+        }
+    }
+
+    private fun syncLayoutState(
+        positions: List<IconPositionEntity>,
+        dockEntities: List<DockAppEntity>,
+        allApps: List<AppInfo>,
+        hiddenPackageNames: Set<String>
+    ) {
+        _homeScreenApps.value = buildHomeScreenPages(positions, allApps, hiddenPackageNames)
+        _dockApps.value = buildDockApps(dockEntities, allApps, hiddenPackageNames)
+    }
+
+    private fun buildHomeScreenPages(
+        positions: List<IconPositionEntity>,
+        allApps: List<AppInfo>,
+        hiddenPackageNames: Set<String>
+    ): Map<Int, List<AppInfo?>> {
+        val allAppsMap = allApps.associateBy { it.packageName }
+        val pages = mutableMapOf<Int, MutableList<AppInfo?>>()
+        val maxPage = positions.maxOfOrNull { it.page } ?: 0
+        for (page in 0..maxPage) {
+            pages[page] = MutableList(24) { null }
+        }
+        positions.forEach { pos ->
+            allAppsMap[pos.packageName]
+                ?.takeUnless { it.packageName in hiddenPackageNames }
+                ?.let { appInfo ->
+                val list = pages.getOrPut(pos.page) { MutableList(24) { null } }
+                val index = (pos.row * 4 + pos.col).coerceIn(0, 23)
+                list[index] = appInfo
+                }
+        }
+        return pages
+    }
+
+    private fun buildDockApps(
+        dockEntities: List<DockAppEntity>,
+        allApps: List<AppInfo>,
+        hiddenPackageNames: Set<String>
+    ): List<AppInfo?> {
+        val allAppsMap = allApps.associateBy { it.packageName }
+        return MutableList<AppInfo?>(5) { null }.apply {
+            dockEntities.forEach { entity ->
+                if (entity.slot in 0..4) {
+                    this[entity.slot] = allAppsMap[entity.packageName]
+                        ?.takeUnless { it.packageName in hiddenPackageNames }
+                }
+            }
+        }
+    }
+
     // Actions
     fun setCurrentPage(page: Int) { _currentPage.value = page }
     fun setSearchQuery(query: String) { _searchQuery.value = query }
@@ -400,6 +446,107 @@ class LauncherViewModel @Inject constructor(
         prefs.edit().putLong("widget_color", colorLong).apply()
     }
 
+    fun openClockApp() {
+        if (launchIntent(Intent(AlarmClock.ACTION_SHOW_ALARMS))) return
+
+        val clockPackages = listOf(
+            "com.google.android.deskclock",
+            "com.android.deskclock",
+            "com.sec.android.app.clockpackage",
+            "com.oneplus.deskclock",
+            "com.miui.clock",
+            "com.oplus.alarmclock"
+        )
+        if (launchKnownPackage(clockPackages)) return
+
+        Toast.makeText(app, "No clock app found", Toast.LENGTH_SHORT).show()
+    }
+
+    fun openWeatherApp() {
+        if (!_weatherEnabled.value) {
+            _weatherEnabled.value = true
+            prefs.edit().putBoolean("weather_enabled", true).apply()
+        }
+        refreshWeatherIfEnabled(force = true)
+
+        val weatherPackages = listOf(
+            "com.google.android.apps.weather",
+            "com.sec.android.daemonapp",
+            "com.miui.weather2",
+            "net.oneplus.weather",
+            "com.oplus.weather",
+            "com.coloros.weather2",
+            "com.asus.weathertime",
+            "com.yahoo.mobile.client.android.weather"
+        )
+        if (launchKnownPackage(weatherPackages)) return
+
+        val weatherApp = findLauncherAppByKeyword("weather")
+        if (weatherApp != null && launchPackage(weatherApp)) return
+
+        launchIntent(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=weather")))
+    }
+
+    fun refreshWeatherIfEnabled(force: Boolean = false) {
+        if (!_weatherEnabled.value) return
+
+        val lastUpdated = prefs.getLong("weather_last_updated", 0L)
+        val hasCachedWeather = _weatherTemperature.value.isNotBlank() && _weatherCondition.value.isNotBlank()
+        val refreshIntervalMs = 30 * 60 * 1000L
+        if (!force && hasCachedWeather && System.currentTimeMillis() - lastUpdated < refreshIntervalMs) {
+            return
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            _isWeatherLoading.value = true
+            try {
+                val locationJson = fetchJson("https://ipwho.is/")
+                val latitude = locationJson.optDouble("latitude", Double.NaN)
+                val longitude = locationJson.optDouble("longitude", Double.NaN)
+                if (latitude.isNaN() || longitude.isNaN()) {
+                    error("Missing weather location coordinates")
+                }
+
+                val city = locationJson.optString("city")
+                val region = locationJson.optString("region")
+                val location = listOf(city, region)
+                    .filter { it.isNotBlank() }
+                    .joinToString(", ")
+                    .ifBlank { "Current location" }
+
+                val weatherJson = fetchJson(
+                    "https://api.open-meteo.com/v1/forecast?" +
+                        "latitude=$latitude&longitude=$longitude&current=temperature_2m,weather_code" +
+                        "&temperature_unit=celsius&forecast_days=1"
+                )
+                val current = weatherJson.getJSONObject("current")
+                val temperature = "${current.optDouble("temperature_2m").roundToInt()}°"
+                val condition = weatherCodeToDescription(current.optInt("weather_code", -1))
+
+                _weatherLocation.value = location
+                _weatherTemperature.value = temperature
+                _weatherCondition.value = condition
+                prefs.edit()
+                    .putString("weather_location", location)
+                    .putString("weather_temperature", temperature)
+                    .putString("weather_condition", condition)
+                    .putLong("weather_last_updated", System.currentTimeMillis())
+                    .apply()
+            } catch (_: Exception) {
+                if (_weatherTemperature.value.isBlank()) {
+                    _weatherTemperature.value = "--"
+                    _weatherCondition.value = "Weather unavailable"
+                    prefs.edit()
+                        .putString("weather_temperature", _weatherTemperature.value)
+                        .putString("weather_condition", _weatherCondition.value)
+                        .apply()
+                }
+            } finally {
+                _isWeatherLoading.value = false
+            }
+        }
+    }
+
     fun launchApp(packageName: String) {
         if (packageName == "com.launcherx.settings") {
             openSettings()
@@ -418,6 +565,7 @@ class LauncherViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.hideApp(packageName)
             repository.deleteIconByPackageName(packageName)
+            repository.deleteDockAppsByPackageName(packageName)
         }
     }
 
@@ -598,6 +746,7 @@ class LauncherViewModel @Inject constructor(
             repository.deleteAllDockApps()
             val hiddenPackages = repository.getHiddenPackageNames().toSet()
             initializeDefaultLayout(_allApps.value.filter { it.packageName !in hiddenPackages })
+            markLayoutSeeded()
         }
     }
 
@@ -624,6 +773,7 @@ class LauncherViewModel @Inject constructor(
             }
             val entities = dockApps.take(5).mapIndexed { i, pkg -> DockAppEntity(i, pkg) }
             repository.insertDockApps(entities)
+            markLayoutSeeded()
         }
     }
 
@@ -640,6 +790,103 @@ class LauncherViewModel @Inject constructor(
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         app.startActivity(intent)
+    }
+
+    fun lockDeviceFromHomeScreen() {
+        if (devicePolicyManager.isAdminActive(deviceAdminComponent)) {
+            devicePolicyManager.lockNow()
+            return
+        }
+
+        val intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN).apply {
+            putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, deviceAdminComponent)
+            putExtra(
+                DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                app.getString(R.string.device_admin_explanation)
+            )
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        try {
+            app.startActivity(intent)
+            Toast.makeText(
+                app,
+                app.getString(R.string.device_admin_prompt_toast),
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (_: Exception) {
+            Toast.makeText(
+                app,
+                app.getString(R.string.device_admin_unavailable),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun launchKnownPackage(packages: List<String>): Boolean {
+        packages.forEach { packageName ->
+            if (launchPackage(packageName)) return true
+        }
+        return false
+    }
+
+    private fun launchPackage(packageName: String): Boolean {
+        val intent = app.packageManager.getLaunchIntentForPackage(packageName) ?: return false
+        return launchIntent(intent)
+    }
+
+    private fun launchIntent(intent: Intent): Boolean {
+        return try {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (intent.resolveActivity(app.packageManager) == null) {
+                false
+            } else {
+                app.startActivity(intent)
+                true
+            }
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun findLauncherAppByKeyword(keyword: String): String? {
+        val launcherIntent = Intent(Intent.ACTION_MAIN).apply {
+            addCategory(Intent.CATEGORY_LAUNCHER)
+        }
+        return app.packageManager.queryIntentActivities(launcherIntent, 0)
+            .firstOrNull { resolveInfo ->
+                resolveInfo.loadLabel(app.packageManager)
+                    .toString()
+                    .contains(keyword, ignoreCase = true)
+            }
+            ?.activityInfo
+            ?.packageName
+    }
+
+    private fun fetchJson(url: String): JSONObject {
+        val connection = URL(url).openConnection() as HttpURLConnection
+        connection.connectTimeout = 7000
+        connection.readTimeout = 7000
+        connection.requestMethod = "GET"
+        connection.setRequestProperty("Accept", "application/json")
+        connection.inputStream.bufferedReader().use { reader ->
+            return JSONObject(reader.readText())
+        }
+    }
+
+    private fun weatherCodeToDescription(code: Int): String {
+        return when (code) {
+            0 -> "Clear"
+            1, 2, 3 -> "Partly cloudy"
+            45, 48 -> "Fog"
+            51, 53, 55, 56, 57 -> "Drizzle"
+            61, 63, 65, 66, 67 -> "Rain"
+            71, 73, 75, 77 -> "Snow"
+            80, 81, 82 -> "Showers"
+            85, 86 -> "Snow showers"
+            95, 96, 99 -> "Thunderstorm"
+            else -> "Weather"
+        }
     }
 
     private fun handlePackageAdded(packageName: String) {
@@ -689,11 +936,7 @@ class LauncherViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             // Remove from room db
             repository.deleteIconByPackageName(packageName)
-            repository.deleteDockApp(DockAppEntity(0, packageName))
-            repository.deleteDockApp(DockAppEntity(1, packageName))
-            repository.deleteDockApp(DockAppEntity(2, packageName))
-            repository.deleteDockApp(DockAppEntity(3, packageName))
-            repository.deleteDockApp(DockAppEntity(4, packageName))
+            repository.deleteDockAppsByPackageName(packageName)
             
             val currentApps = _allApps.value.toMutableList()
             currentApps.removeAll { it.packageName == packageName }

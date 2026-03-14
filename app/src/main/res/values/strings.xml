@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LauncherX</string>
+    <string name="device_admin_label">LauncherX screen lock</string>
+    <string name="device_admin_explanation">Allow LauncherX to lock the device when you double tap an empty home screen area.</string>
+    <string name="device_admin_prompt_toast">Enable device admin once to use double-tap lock.</string>
+    <string name="device_admin_unavailable">Device admin setup is not available on this device.</string>
 </resources>

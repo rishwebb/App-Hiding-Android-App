@@ -18,6 +18,9 @@ interface DockAppDao {
     @Delete
     suspend fun deleteDockApp(dockApp: DockAppEntity)
 
+    @Query("DELETE FROM dock_apps WHERE packageName = :packageName")
+    suspend fun deleteByPackageName(packageName: String)
+
     @Query("DELETE FROM dock_apps WHERE slot = :slot")
     suspend fun deleteBySlot(slot: Int)
 

@@ -5,7 +5,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -18,8 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
@@ -40,9 +42,17 @@ fun TimeWidgetOverlay(
     offsetY: Float,
     scale: Float,
     widgetColor: Color,
+    weatherEnabled: Boolean,
+    weatherLocation: String,
+    weatherTemperature: String,
+    weatherCondition: String,
+    isWeatherLoading: Boolean,
     onOffsetChange: (Float, Float) -> Unit,
     onScaleChange: (Float) -> Unit,
     onColorChange: (Long) -> Unit,
+    onClockClick: () -> Unit,
+    onWeatherClick: () -> Unit,
+    onBoundsChanged: (Rect) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var currentTime by remember { mutableStateOf("") }
@@ -70,7 +80,16 @@ fun TimeWidgetOverlay(
         // Time Widget
         Box(
             modifier = Modifier
-                .onGloballyPositioned { widgetSize = it.size }
+                .onGloballyPositioned {
+                    widgetSize = it.size
+                    val position = it.positionInRoot()
+                    onBoundsChanged(
+                        Rect(
+                            position,
+                            Size(it.size.width.toFloat(), it.size.height.toFloat())
+                        )
+                    )
+                }
                 .offset { 
                     val finalX = if (offsetX < 0f && widgetSize.width > 0) {
                         ((screenWidthPx - widgetSize.width) / 2f).toInt()
@@ -111,7 +130,13 @@ fun TimeWidgetOverlay(
                     fontWeight = FontWeight.Medium,
                     fontFamily = SFProFontFamily,
                     textAlign = TextAlign.Center,
-                    letterSpacing = (-2).sp
+                    letterSpacing = (-2).sp,
+                    modifier = Modifier.pointerInput(Unit) {
+                        detectTapGestures(
+                            onTap = { onClockClick() },
+                            onLongPress = { showColorPicker = !showColorPicker }
+                        )
+                    }
                 )
                 Text(
                     text = currentDate,
@@ -122,13 +147,34 @@ fun TimeWidgetOverlay(
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = "Tap to get weather",
+                    text = when {
+                        isWeatherLoading -> "Loading weather..."
+                        weatherEnabled && weatherTemperature.isNotBlank() && weatherCondition.isNotBlank() ->
+                            "$weatherTemperature  $weatherCondition"
+                        else -> "Tap to get weather"
+                    },
                     color = widgetColor.copy(alpha = 0.6f),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Normal,
                     fontFamily = SFProFontFamily,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.pointerInput(Unit) {
+                        detectTapGestures(
+                            onTap = { onWeatherClick() },
+                            onLongPress = { showColorPicker = !showColorPicker }
+                        )
+                    }
                 )
+                if (weatherEnabled && weatherLocation.isNotBlank()) {
+                    Text(
+                        text = weatherLocation,
+                        color = widgetColor.copy(alpha = 0.48f),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Normal,
+                        fontFamily = SFProFontFamily,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
 
@@ -206,7 +252,9 @@ private fun ColorPickerPopup(
                                     else if (colorLong == 0xFFFFFFFF.toLong()) Modifier.border(1.dp, Color.Gray, CircleShape)
                                     else Modifier
                                 )
-                                .clickable { onColorSelected(colorLong) }
+                                .pointerInput(colorLong) {
+                                    detectTapGestures(onTap = { onColorSelected(colorLong) })
+                                }
                         )
                     }
                 }
@@ -217,7 +265,9 @@ private fun ColorPickerPopup(
                 color = Color(0xFF007AFF),
                 fontSize = 14.sp,
                 fontFamily = SFProFontFamily,
-                modifier = Modifier.clickable { onDismiss() }
+                modifier = Modifier.pointerInput(Unit) {
+                    detectTapGestures(onTap = { onDismiss() })
+                }
             )
         }
     }
