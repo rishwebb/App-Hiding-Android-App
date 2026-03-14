@@ -2,6 +2,8 @@
   <img src="logo.png" alt="LauncherX logo" width="140" />
 </p>
 
+<h1 align="center">LauncherX</h1>
+
 <p align="center">
   <img src="docs/assets/hero.svg" alt="LauncherX hero banner" width="100%" />
 </p>
