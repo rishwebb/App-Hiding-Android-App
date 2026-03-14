@@ -1,0 +1,65 @@
+<svg width="1280" height="520" viewBox="0 0 1280 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="stackBg" x1="33" y1="31" x2="1235" y2="489" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C1730"/>
+      <stop offset="0.5" stop-color="#10233F"/>
+      <stop offset="1" stop-color="#0B1428"/>
+    </linearGradient>
+    <linearGradient id="nodeA" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#56E2D0"/>
+      <stop offset="1" stop-color="#4B8BFF"/>
+    </linearGradient>
+    <linearGradient id="nodeB" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#4DD0FF"/>
+      <stop offset="1" stop-color="#6D73FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="520" rx="32" fill="url(#stackBg)"/>
+
+  <text x="62" y="82" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="700">Architecture at a glance</text>
+  <text x="62" y="118" fill="#B8DEFF" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="500">
+    UI, state, persistence, and Android integrations are separated cleanly enough to keep iteration fast.
+  </text>
+
+  <rect x="70" y="190" width="220" height="180" rx="28" fill="#11294C"/>
+  <rect x="70" y="190" width="220" height="180" rx="28" fill="url(#nodeA)" fill-opacity="0.08"/>
+  <text x="100" y="246" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Compose UI</text>
+  <text x="100" y="284" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Home screen</text>
+  <text x="100" y="312" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Dock</text>
+  <text x="100" y="340" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Drawer / vault / widget</text>
+
+  <rect x="360" y="190" width="260" height="180" rx="28" fill="#11294C"/>
+  <rect x="360" y="190" width="260" height="180" rx="28" fill="url(#nodeB)" fill-opacity="0.08"/>
+  <text x="392" y="246" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">LauncherViewModel</text>
+  <text x="392" y="284" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Gesture routing</text>
+  <text x="392" y="312" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Dock/home layout state</text>
+  <text x="392" y="340" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Weather, widget, app actions</text>
+
+  <rect x="690" y="190" width="220" height="180" rx="28" fill="#11294C"/>
+  <rect x="690" y="190" width="220" height="180" rx="28" fill="url(#nodeA)" fill-opacity="0.08"/>
+  <text x="722" y="246" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Repository</text>
+  <text x="722" y="284" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Room DAO bridge</text>
+  <text x="722" y="312" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Hidden apps</text>
+  <text x="722" y="340" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Dock + icon positions</text>
+
+  <rect x="980" y="190" width="220" height="180" rx="28" fill="#11294C"/>
+  <rect x="980" y="190" width="220" height="180" rx="28" fill="url(#nodeB)" fill-opacity="0.08"/>
+  <text x="1012" y="246" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Android layer</text>
+  <text x="1012" y="284" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">BootReceiver</text>
+  <text x="1012" y="312" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">PackageManager</text>
+  <text x="1012" y="340" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Biometric / device admin</text>
+
+  <path d="M290 280H360" stroke="#83E7D3" stroke-width="8" stroke-linecap="round"/>
+  <path d="M620 280H690" stroke="#83E7D3" stroke-width="8" stroke-linecap="round"/>
+  <path d="M910 280H980" stroke="#83E7D3" stroke-width="8" stroke-linecap="round"/>
+
+  <circle cx="325" cy="280" r="9" fill="#83E7D3"/>
+  <circle cx="655" cy="280" r="9" fill="#83E7D3"/>
+  <circle cx="945" cy="280" r="9" fill="#83E7D3"/>
+
+  <rect x="100" y="412" width="1080" height="54" rx="20" fill="#0B1830" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="640" y="446" text-anchor="middle" fill="#BFE9FF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">
+    Hilt wires dependencies, Room stores user layout state, and Compose renders the full launcher shell.
+  </text>
+</svg>

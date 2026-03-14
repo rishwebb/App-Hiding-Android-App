@@ -1,0 +1,101 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="67" y1="52" x2="1151" y2="689" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7FE8D1"/>
+      <stop offset="0.34" stop-color="#22C9E7"/>
+      <stop offset="0.68" stop-color="#308BFF"/>
+      <stop offset="1" stop-color="#5A64F7"/>
+    </linearGradient>
+    <linearGradient id="card" x1="817" y1="106" x2="1112" y2="617" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#132B59" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#091221" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.12"/>
+    </linearGradient>
+    <filter id="blurA" x="-150" y="-150" width="600" height="600" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="75"/>
+    </filter>
+    <filter id="shadow" x="740" y="54" width="444" height="628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="26" stdDeviation="30" flood-color="#05111F" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" rx="32" fill="url(#bg)"/>
+  <circle cx="152" cy="131" r="120" fill="#FFFFFF" fill-opacity="0.16" filter="url(#blurA)"/>
+  <circle cx="1224" cy="95" r="96" fill="#FFFFFF" fill-opacity="0.11"/>
+  <circle cx="1115" cy="624" r="140" fill="#FFFFFF" fill-opacity="0.08"/>
+
+  <g opacity="0.94">
+    <rect x="72" y="88" width="108" height="108" rx="28" fill="#0A2A66" fill-opacity="0.2"/>
+    <g fill="#39C4FF">
+      <circle cx="111" cy="127" r="13"/>
+      <circle cx="164" cy="127" r="13"/>
+      <circle cx="111" cy="181" r="13"/>
+      <circle cx="164" cy="181" r="13"/>
+    </g>
+  </g>
+
+  <text x="72" y="278" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="700">LauncherX</text>
+  <text x="72" y="332" fill="#EAF9FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="500">
+    Compose-built Android launcher with
+  </text>
+  <text x="72" y="370" fill="#EAF9FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="500">
+    iOS-inspired motion, drag-and-drop layout,
+  </text>
+  <text x="72" y="408" fill="#EAF9FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="500">
+    hidden-app vault, and persistent home state.
+  </text>
+
+  <g>
+    <rect x="72" y="462" width="154" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.22"/>
+    <text x="149" y="491" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Android 12+</text>
+
+    <rect x="238" y="462" width="190" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.18"/>
+    <text x="333" y="491" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Jetpack Compose</text>
+
+    <rect x="440" y="462" width="104" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.18"/>
+    <text x="492" y="491" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Room</text>
+  </g>
+
+  <g>
+    <rect x="72" y="560" width="560" height="92" rx="24" fill="#0A1630" fill-opacity="0.14" stroke="#FFFFFF" stroke-opacity="0.20"/>
+    <text x="102" y="596" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Built for feel</text>
+    <text x="102" y="628" fill="#EAF9FF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Swipe-up drawer, pinch-open vault, draggable icons, glass dock, widget actions.
+    </text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="780" y="86" width="364" height="548" rx="42" fill="#08111F"/>
+    <rect x="798" y="106" width="328" height="510" rx="34" fill="url(#card)"/>
+    <rect x="910" y="121" width="105" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.20"/>
+
+    <text x="962" y="208" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="600">9:41</text>
+    <text x="962" y="235" text-anchor="middle" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Fri, Mar 14</text>
+    <text x="962" y="260" text-anchor="middle" fill="#BCEBFF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="500">26°  Clear</text>
+
+    <rect x="834" y="296" width="96" height="96" rx="26" fill="url(#glass)"/>
+    <rect x="946" y="296" width="96" height="96" rx="26" fill="url(#glass)"/>
+    <rect x="834" y="408" width="96" height="96" rx="26" fill="url(#glass)"/>
+    <rect x="946" y="408" width="96" height="96" rx="26" fill="url(#glass)"/>
+
+    <circle cx="882" cy="344" r="24" fill="#4CB8FF"/>
+    <circle cx="994" cy="344" r="24" fill="#44D6C4"/>
+    <circle cx="882" cy="456" r="24" fill="#7286FF"/>
+    <circle cx="994" cy="456" r="24" fill="#50C1FF"/>
+
+    <rect x="828" y="530" width="268" height="58" rx="28" fill="#FFFFFF" fill-opacity="0.15" stroke="#FFFFFF" stroke-opacity="0.24"/>
+    <circle cx="874" cy="559" r="18" fill="#57B9FF"/>
+    <circle cx="934" cy="559" r="18" fill="#4CE4B6"/>
+    <circle cx="994" cy="559" r="18" fill="#FFFFFF" fill-opacity="0.88"/>
+    <circle cx="1054" cy="559" r="18" fill="#7C8CFF"/>
+  </g>
+
+  <g>
+    <rect x="1042" y="160" width="170" height="72" rx="22" fill="#FFFFFF" fill-opacity="0.18"/>
+    <text x="1064" y="188" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Hidden Vault</text>
+    <text x="1064" y="212" fill="#EAF9FF" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500">PIN + biometric access</text>
+  </g>
+</svg>

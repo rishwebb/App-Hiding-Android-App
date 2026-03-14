@@ -1,0 +1,109 @@
+<svg width="1280" height="780" viewBox="0 0 1280 780" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="panelBg" x1="40" y1="40" x2="1230" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081A30"/>
+      <stop offset="0.5" stop-color="#0F2747"/>
+      <stop offset="1" stop-color="#0B1830"/>
+    </linearGradient>
+    <linearGradient id="cardA" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2AD5D0"/>
+      <stop offset="1" stop-color="#448BFF"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#43C3FF"/>
+      <stop offset="1" stop-color="#6A6BFF"/>
+    </linearGradient>
+    <linearGradient id="cardC" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#77E4D1"/>
+      <stop offset="1" stop-color="#19A0FF"/>
+    </linearGradient>
+    <linearGradient id="cardD" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#47D9FF"/>
+      <stop offset="1" stop-color="#3FD0A4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="780" rx="32" fill="url(#panelBg)"/>
+
+  <text x="70" y="88" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700">LauncherX highlights</text>
+  <text x="70" y="126" fill="#B7DFFF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="500">
+    Four product areas that define the experience.
+  </text>
+
+  <g>
+    <rect x="60" y="170" width="560" height="248" rx="30" fill="#10294B"/>
+    <rect x="60" y="170" width="560" height="248" rx="30" fill="url(#cardA)" fill-opacity="0.08"/>
+    <text x="100" y="226" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Gesture-first navigation</text>
+    <text x="100" y="264" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Swipe up for the drawer. Pinch open for the vault.
+    </text>
+    <text x="100" y="292" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Gesture conflicts are guarded so one interaction does one thing.
+    </text>
+    <path d="M100 342C164 342 188 318 224 270" stroke="#9EF8E5" stroke-width="10" stroke-linecap="round"/>
+    <path d="M226 254L258 285" stroke="#9EF8E5" stroke-width="10" stroke-linecap="round"/>
+    <path d="M226 254L266 249" stroke="#9EF8E5" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="428" cy="308" r="66" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="12"/>
+    <circle cx="404" cy="308" r="18" fill="#4CCEFF"/>
+    <circle cx="452" cy="308" r="18" fill="#6F7BFF"/>
+    <text x="100" y="384" fill="#8FD3FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Drawer + vault routing lives at the launcher surface.</text>
+  </g>
+
+  <g>
+    <rect x="660" y="170" width="560" height="248" rx="30" fill="#10294B"/>
+    <rect x="660" y="170" width="560" height="248" rx="30" fill="url(#cardB)" fill-opacity="0.08"/>
+    <text x="700" y="226" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Customizable time widget</text>
+    <text x="700" y="264" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Tap time to open the clock app. Tap weather to jump into weather.
+    </text>
+    <text x="700" y="292" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Long-press opens the color picker. Dragging repositions the widget.
+    </text>
+    <text x="802" y="366" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="600">9:41</text>
+    <text x="802" y="392" text-anchor="middle" fill="#B6E7FF" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="500">26°  Clear</text>
+    <g>
+      <circle cx="1076" cy="334" r="16" fill="#FFFFFF"/>
+      <circle cx="1114" cy="334" r="16" fill="#FF7A59"/>
+      <circle cx="1152" cy="334" r="16" fill="#4BA3FF"/>
+      <circle cx="1076" cy="372" r="16" fill="#34C759"/>
+      <circle cx="1114" cy="372" r="16" fill="#FFD84D"/>
+      <circle cx="1152" cy="372" r="16" fill="#111827"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="60" y="454" width="560" height="248" rx="30" fill="#10294B"/>
+    <rect x="60" y="454" width="560" height="248" rx="30" fill="url(#cardC)" fill-opacity="0.08"/>
+    <text x="100" y="510" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Hidden apps vault</text>
+    <text x="100" y="548" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Hidden apps disappear from normal browsing while staying available inside
+    </text>
+    <text x="100" y="576" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      a dedicated PIN-protected vault with biometric entry support.
+    </text>
+    <rect x="380" y="532" width="150" height="108" rx="24" fill="#0B1830" stroke="#74EEDE" stroke-opacity="0.55"/>
+    <rect x="402" y="558" width="106" height="20" rx="10" fill="#74EEDE" fill-opacity="0.32"/>
+    <circle cx="428" cy="606" r="10" fill="#74EEDE"/>
+    <circle cx="455" cy="606" r="10" fill="#74EEDE"/>
+    <circle cx="482" cy="606" r="10" fill="#74EEDE"/>
+    <circle cx="509" cy="606" r="10" fill="#74EEDE"/>
+    <text x="100" y="636" fill="#8FD3FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Hidden apps are removed from dock and drawer correctly.</text>
+  </g>
+
+  <g>
+    <rect x="660" y="454" width="560" height="248" rx="30" fill="#10294B"/>
+    <rect x="660" y="454" width="560" height="248" rx="30" fill="url(#cardD)" fill-opacity="0.08"/>
+    <text x="700" y="510" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Persistence that survives reboot</text>
+    <text x="700" y="548" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      Dock edits, home placement changes, and widget preferences are stored
+    </text>
+    <text x="700" y="576" fill="#D5EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">
+      locally so the launcher comes back exactly as the user left it.
+    </text>
+    <rect x="924" y="528" width="212" height="116" rx="24" fill="#0B1830" stroke="#7FE8D1" stroke-opacity="0.45"/>
+    <rect x="952" y="552" width="54" height="54" rx="14" fill="#55B9FF"/>
+    <rect x="1020" y="552" width="54" height="54" rx="14" fill="#46DEC1"/>
+    <rect x="1088" y="552" width="20" height="54" rx="10" fill="#FFFFFF" fill-opacity="0.65"/>
+    <text x="700" y="636" fill="#8FD3FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Room-backed state plus startup seeding guard.</text>
+  </g>
+</svg>
