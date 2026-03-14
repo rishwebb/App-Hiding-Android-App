@@ -1,0 +1,238 @@
+[
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_calendar.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_calendar.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_safari.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_safari.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_youtube.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_youtube.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_appstore.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_appstore.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_discord.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_discord.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_generic_news.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_generic_news.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_podcasts.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_podcasts.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_phone.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_phone.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_camera.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_camera.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_telegram.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_telegram.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_instagram.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_instagram.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_netflix.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_netflix.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_mail.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_mail.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_generic_game.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_generic_game.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_notes.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_notes.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_facetime.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_facetime.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_photos.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_photos.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_health.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_health.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_spotify.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_spotify.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_whatsapp.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_whatsapp.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_generic_entertainment.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_generic_entertainment.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_amazon.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_amazon.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_clock.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_clock.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_contacts.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_contacts.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_facebook.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_facebook.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_generic_productivity.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_generic_productivity.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_calculator.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_calculator.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ic_launcher_foreground.png.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_messages.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_messages.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_translate.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_translate.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_pinterest.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_pinterest.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_weather.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_weather.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_news.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_news.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_files.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_files.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_maps.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_maps.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_twitter.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_twitter.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_settings.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_settings.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_reddit.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_reddit.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_wallpaper.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_wallpaper.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_uber.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_uber.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_generic_social.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_generic_social.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_snapchat.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_snapchat.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_tiktok.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_tiktok.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher_foreground.xml.flat",
+        "source": "com.launcherx.app-main-69:/mipmap-anydpi-v26/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_music.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_music.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_linkedin.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_linkedin.xml"
+    },
+    {
+        "merged": "com.launcherx.app-merged_res-67:/drawable_ios_wallet.xml.flat",
+        "source": "com.launcherx.app-main-69:/drawable/ios_wallet.xml"
+    }
+]

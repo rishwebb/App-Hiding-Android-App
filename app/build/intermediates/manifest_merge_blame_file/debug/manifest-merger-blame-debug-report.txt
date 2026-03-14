@@ -1,0 +1,254 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.launcherx"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="31"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:5:5-78
+11-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:5:22-75
+12    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+12-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:6:5-81
+12-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:6:22-78
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:7:5-77
+13-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:7:22-74
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:8:5-66
+14-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:8:22-63
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:9:5-67
+15-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:9:22-64
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:10:5-79
+16-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:10:22-76
+17    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+17-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:11:5-76
+17-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:11:22-73
+18    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+18-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:12:5-76
+18-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:12:22-73
+19    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+19-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:13:5-89
+19-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:13:22-86
+20    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+20-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:14:5-80
+20-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:14:22-77
+21    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+21-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:15:5-77
+21-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:15:22-74
+22    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+22-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:16:5-18:53
+22-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:17:9-61
+23    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+23-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:19:5-82
+23-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:19:22-79
+24    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
+24-->[androidx.biometric:biometric:1.1.0] /home/rishav/.gradle/caches/transforms-3/bf3e17867da054de7b431700351824ac/transformed/biometric-1.1.0/AndroidManifest.xml:24:5-72
+24-->[androidx.biometric:biometric:1.1.0] /home/rishav/.gradle/caches/transforms-3/bf3e17867da054de7b431700351824ac/transformed/biometric-1.1.0/AndroidManifest.xml:24:22-69
+25    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+25-->[androidx.biometric:biometric:1.1.0] /home/rishav/.gradle/caches/transforms-3/bf3e17867da054de7b431700351824ac/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
+25-->[androidx.biometric:biometric:1.1.0] /home/rishav/.gradle/caches/transforms-3/bf3e17867da054de7b431700351824ac/transformed/biometric-1.1.0/AndroidManifest.xml:27:22-71
+26
+27    <permission
+27-->[androidx.core:core:1.12.0] /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+28        android:name="com.launcherx.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+28-->[androidx.core:core:1.12.0] /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+29        android:protectionLevel="signature" />
+29-->[androidx.core:core:1.12.0] /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+30
+31    <uses-permission android:name="com.launcherx.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+31-->[androidx.core:core:1.12.0] /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+31-->[androidx.core:core:1.12.0] /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+32
+33    <application
+33-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:21:5-69:19
+34        android:name="com.launcherx.LauncherApp"
+34-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:22:9-36
+35        android:allowBackup="true"
+35-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:23:9-35
+36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+36-->[androidx.core:core:1.12.0] /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+37        android:debuggable="true"
+38        android:extractNativeLibs="false"
+39        android:hardwareAccelerated="true"
+39-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:24:9-43
+40        android:icon="@mipmap/ic_launcher"
+40-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:25:9-43
+41        android:label="LauncherX"
+41-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:26:9-34
+42        android:roundIcon="@mipmap/ic_launcher_round"
+42-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:27:9-54
+43        android:supportsRtl="true"
+43-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:28:9-35
+44        android:theme="@style/Theme.LauncherX" >
+44-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:29:9-47
+45        <activity
+45-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:32:9-45:20
+46            android:name="com.launcherx.LauncherActivity"
+46-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:33:13-45
+47            android:exported="true"
+47-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:34:13-36
+48            android:hardwareAccelerated="true"
+48-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:35:13-47
+49            android:launchMode="singleTask"
+49-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:36:13-44
+50            android:screenOrientation="portrait"
+50-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:37:13-49
+51            android:stateNotNeeded="true" >
+51-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:38:13-42
+52            <intent-filter android:priority="999" >
+52-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:39:13-44:29
+52-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:39:28-50
+53                <action android:name="android.intent.action.MAIN" />
+53-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:40:17-69
+53-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:40:25-66
+54
+55                <category android:name="android.intent.category.HOME" />
+55-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:41:17-73
+55-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:41:27-70
+56                <category android:name="android.intent.category.DEFAULT" />
+56-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:42:17-76
+56-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:42:27-73
+57                <category android:name="android.intent.category.LAUNCHER" />
+57-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:43:17-77
+57-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:43:27-74
+58            </intent-filter>
+59        </activity>
+60
+61        <receiver
+61-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:47:9-54:20
+62            android:name="com.launcherx.boot.BootReceiver"
+62-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:48:13-46
+63            android:exported="true" >
+63-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:49:13-36
+64            <intent-filter android:priority="999" >
+64-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:50:13-53:29
+64-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:50:28-50
+65                <action android:name="android.intent.action.BOOT_COMPLETED" />
+65-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:51:17-79
+65-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:51:25-76
+66                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+66-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:52:17-82
+66-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:52:25-79
+67            </intent-filter>
+68        </receiver>
+69
+70        <service
+70-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:56:9-59:58
+71            android:name="com.launcherx.lockscreen.LockScreenService"
+71-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:57:13-57
+72            android:exported="false"
+72-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:58:13-37
+73            android:foregroundServiceType="specialUse" />
+73-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:59:13-55
+74        <service
+74-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:61:9-68:19
+75            android:name="com.launcherx.lockscreen.NotificationListener"
+75-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:62:13-60
+76            android:exported="true"
+76-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:63:13-36
+77            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+77-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:64:13-87
+78            <intent-filter>
+78-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:65:13-67:29
+79                <action android:name="android.service.notification.NotificationListenerService" />
+79-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:66:17-99
+79-->/home/rishav/Downloads/ios launcher/app/src/main/AndroidManifest.xml:66:25-96
+80            </intent-filter>
+81        </service>
+82
+83        <activity
+83-->[androidx.compose.ui:ui-tooling-android:1.5.4] /home/rishav/.gradle/caches/transforms-3/7f1cd48946387d9d4eb7a36ad07ae759/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+84            android:name="androidx.compose.ui.tooling.PreviewActivity"
+84-->[androidx.compose.ui:ui-tooling-android:1.5.4] /home/rishav/.gradle/caches/transforms-3/7f1cd48946387d9d4eb7a36ad07ae759/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+85            android:exported="true" />
+85-->[androidx.compose.ui:ui-tooling-android:1.5.4] /home/rishav/.gradle/caches/transforms-3/7f1cd48946387d9d4eb7a36ad07ae759/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+86        <activity
+86-->[androidx.compose.ui:ui-test-manifest:1.5.4] /home/rishav/.gradle/caches/transforms-3/51fec66a67d289fd0c063346232b6922/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:23:9-25:39
+87            android:name="androidx.activity.ComponentActivity"
+87-->[androidx.compose.ui:ui-test-manifest:1.5.4] /home/rishav/.gradle/caches/transforms-3/51fec66a67d289fd0c063346232b6922/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:24:13-63
+88            android:exported="true" />
+88-->[androidx.compose.ui:ui-test-manifest:1.5.4] /home/rishav/.gradle/caches/transforms-3/51fec66a67d289fd0c063346232b6922/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:25:13-36
+89
+90        <provider
+90-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+91            android:name="androidx.startup.InitializationProvider"
+91-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
+92            android:authorities="com.launcherx.androidx-startup"
+92-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
+93            android:exported="false" >
+93-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
+94            <meta-data
+94-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+95                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+95-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+96                android:value="androidx.startup" />
+96-->[androidx.emoji2:emoji2:1.4.0] /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+97            <meta-data
+97-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/rishav/.gradle/caches/transforms-3/7720567b4de131d82ff8c2af84f8adc7/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+98                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+98-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/rishav/.gradle/caches/transforms-3/7720567b4de131d82ff8c2af84f8adc7/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+99                android:value="androidx.startup" />
+99-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/rishav/.gradle/caches/transforms-3/7720567b4de131d82ff8c2af84f8adc7/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+100            <meta-data
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+101                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+102                android:value="androidx.startup" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+103        </provider>
+104
+105        <service
+105-->[androidx.room:room-runtime:2.6.1] /home/rishav/.gradle/caches/transforms-3/d09352c77be790bdafb3436cf206b195/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+106            android:name="androidx.room.MultiInstanceInvalidationService"
+106-->[androidx.room:room-runtime:2.6.1] /home/rishav/.gradle/caches/transforms-3/d09352c77be790bdafb3436cf206b195/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+107            android:directBootAware="true"
+107-->[androidx.room:room-runtime:2.6.1] /home/rishav/.gradle/caches/transforms-3/d09352c77be790bdafb3436cf206b195/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+108            android:exported="false" />
+108-->[androidx.room:room-runtime:2.6.1] /home/rishav/.gradle/caches/transforms-3/d09352c77be790bdafb3436cf206b195/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+109
+110        <receiver
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+111            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+112            android:directBootAware="false"
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+113            android:enabled="true"
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+114            android:exported="true"
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+115            android:permission="android.permission.DUMP" >
+115-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+116            <intent-filter>
+116-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+117                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+118            </intent-filter>
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+120                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+121            </intent-filter>
+122            <intent-filter>
+122-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+123                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+124            </intent-filter>
+125            <intent-filter>
+125-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+126                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+127            </intent-filter>
+128        </receiver>
+129    </application>
+130
+131</manifest>

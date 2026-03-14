@@ -1,0 +1,69 @@
+com.launcherx.app-lifecycle-service-2.6.2-0 /home/rishav/.gradle/caches/transforms-3/028f586c60e463d01cb268ea66478902/transformed/lifecycle-service-2.6.2/res
+com.launcherx.app-lifecycle-runtime-2.6.2-1 /home/rishav/.gradle/caches/transforms-3/0398d6d474f18274c1aeaaf6132c94b9/transformed/lifecycle-runtime-2.6.2/res
+com.launcherx.app-animation-release-2 /home/rishav/.gradle/caches/transforms-3/085c9dfb872bd828c1617606559f314a/transformed/animation-release/res
+com.launcherx.app-core-runtime-2.2.0-3 /home/rishav/.gradle/caches/transforms-3/0917162c64da8b4c68eb97f14a5a2248/transformed/core-runtime-2.2.0/res
+com.launcherx.app-ui-text-release-4 /home/rishav/.gradle/caches/transforms-3/0b3e9edd078ecfb67f7c6b6d01ded9a9/transformed/ui-text-release/res
+com.launcherx.app-sqlite-framework-2.4.0-5 /home/rishav/.gradle/caches/transforms-3/137044ee47828ab5c2a80532cbe68a8d/transformed/sqlite-framework-2.4.0/res
+com.launcherx.app-security-crypto-1.1.0-alpha06-6 /home/rishav/.gradle/caches/transforms-3/1380f2cd7449dac0bf40d5a665063939/transformed/security-crypto-1.1.0-alpha06/res
+com.launcherx.app-navigation-common-2.7.5-7 /home/rishav/.gradle/caches/transforms-3/1911c760fb2da28fe25a54ae23f9b86d/transformed/navigation-common-2.7.5/res
+com.launcherx.app-material-icons-extended-release-8 /home/rishav/.gradle/caches/transforms-3/1b09c5ef24a11d318838b704692e5242/transformed/material-icons-extended-release/res
+com.launcherx.app-material-ripple-release-9 /home/rishav/.gradle/caches/transforms-3/2330b6e219db0ebc79f7929d136e7b74/transformed/material-ripple-release/res
+com.launcherx.app-lifecycle-livedata-core-2.6.2-10 /home/rishav/.gradle/caches/transforms-3/28c391484a265810a7d1a238c2a2b23a/transformed/lifecycle-livedata-core-2.6.2/res
+com.launcherx.app-savedstate-1.2.1-11 /home/rishav/.gradle/caches/transforms-3/2a0c3664a44117c86aa734b29651dd33/transformed/savedstate-1.2.1/res
+com.launcherx.app-appcompat-1.6.1-12 /home/rishav/.gradle/caches/transforms-3/2c1cc48b1ba084d889d87b727cafdc3c/transformed/appcompat-1.6.1/res
+com.launcherx.app-lifecycle-livedata-2.6.2-13 /home/rishav/.gradle/caches/transforms-3/3c0c3b69b49590345d81536eff552afe/transformed/lifecycle-livedata-2.6.2/res
+com.launcherx.app-ui-tooling-data-release-14 /home/rishav/.gradle/caches/transforms-3/3e3b1497260b5fab9751d080bb799b01/transformed/ui-tooling-data-release/res
+com.launcherx.app-activity-1.8.1-15 /home/rishav/.gradle/caches/transforms-3/4647831289a5aed00e4b757b1a21cf5c/transformed/activity-1.8.1/res
+com.launcherx.app-ui-tooling-preview-release-16 /home/rishav/.gradle/caches/transforms-3/4b8cabb8fcddd6e5ed0b7b2c279613be/transformed/ui-tooling-preview-release/res
+com.launcherx.app-emoji2-views-helper-1.4.0-17 /home/rishav/.gradle/caches/transforms-3/4ba4af7fa51380ced4e80a5766db5e72/transformed/emoji2-views-helper-1.4.0/res
+com.launcherx.app-activity-compose-1.8.1-18 /home/rishav/.gradle/caches/transforms-3/4c1ddcc28c7f8bc9f2be77a255cc2e5c/transformed/activity-compose-1.8.1/res
+com.launcherx.app-lifecycle-runtime-compose-2.6.2-19 /home/rishav/.gradle/caches/transforms-3/4dca79b98b48879d53d1a0c66cdc1d2a/transformed/lifecycle-runtime-compose-2.6.2/res
+com.launcherx.app-ui-test-manifest-1.5.4-20 /home/rishav/.gradle/caches/transforms-3/51fec66a67d289fd0c063346232b6922/transformed/ui-test-manifest-1.5.4/res
+com.launcherx.app-foundation-layout-release-21 /home/rishav/.gradle/caches/transforms-3/52596c4faae09e58527a4c8353d915ee/transformed/foundation-layout-release/res
+com.launcherx.app-hilt-navigation-1.1.0-22 /home/rishav/.gradle/caches/transforms-3/53ecce19403a98eafc55f5ab37908b34/transformed/hilt-navigation-1.1.0/res
+com.launcherx.app-activity-ktx-1.8.1-23 /home/rishav/.gradle/caches/transforms-3/5af5a9e5e44a4b8fcb191d77ed9c1d6c/transformed/activity-ktx-1.8.1/res
+com.launcherx.app-fragment-1.5.1-24 /home/rishav/.gradle/caches/transforms-3/61149aa83da7b1d7c58868e31bf4f1a6/transformed/fragment-1.5.1/res
+com.launcherx.app-ui-release-25 /home/rishav/.gradle/caches/transforms-3/6135c763ee3e26410076334562ee04e8/transformed/ui-release/res
+com.launcherx.app-ui-unit-release-26 /home/rishav/.gradle/caches/transforms-3/6b0699b04edab1b405c921c269893f5a/transformed/ui-unit-release/res
+com.launcherx.app-savedstate-ktx-1.2.1-27 /home/rishav/.gradle/caches/transforms-3/6fa9518522eb448e9655edb675af63de/transformed/savedstate-ktx-1.2.1/res
+com.launcherx.app-lifecycle-runtime-ktx-2.6.2-28 /home/rishav/.gradle/caches/transforms-3/742615d220abd8aff6da8fd132220f55/transformed/lifecycle-runtime-ktx-2.6.2/res
+com.launcherx.app-lifecycle-process-2.6.2-29 /home/rishav/.gradle/caches/transforms-3/7720567b4de131d82ff8c2af84f8adc7/transformed/lifecycle-process-2.6.2/res
+com.launcherx.app-foundation-release-30 /home/rishav/.gradle/caches/transforms-3/7eed8792b852da1868ddb9a55d929434/transformed/foundation-release/res
+com.launcherx.app-ui-tooling-release-31 /home/rishav/.gradle/caches/transforms-3/7f1cd48946387d9d4eb7a36ad07ae759/transformed/ui-tooling-release/res
+com.launcherx.app-coil-base-2.5.0-32 /home/rishav/.gradle/caches/transforms-3/812c78e7e940e08114193896eb35c97d/transformed/coil-base-2.5.0/res
+com.launcherx.app-runtime-saveable-release-33 /home/rishav/.gradle/caches/transforms-3/8679b038bd7d337755b1e5d22edc00f9/transformed/runtime-saveable-release/res
+com.launcherx.app-navigation-compose-2.7.5-34 /home/rishav/.gradle/caches/transforms-3/89a20f01408d87d1a0c9c4d2d994fb84/transformed/navigation-compose-2.7.5/res
+com.launcherx.app-core-ktx-1.12.0-35 /home/rishav/.gradle/caches/transforms-3/90c21f3e2659d7083c734a7242bfb714/transformed/core-ktx-1.12.0/res
+com.launcherx.app-lifecycle-viewmodel-savedstate-2.6.2-36 /home/rishav/.gradle/caches/transforms-3/91ce2efc01edafa1c7e98535075b6748/transformed/lifecycle-viewmodel-savedstate-2.6.2/res
+com.launcherx.app-material-release-37 /home/rishav/.gradle/caches/transforms-3/923a101f286cc87e92c847373d80c007/transformed/material-release/res
+com.launcherx.app-lifecycle-viewmodel-compose-2.6.2-38 /home/rishav/.gradle/caches/transforms-3/9ab9407ac088f81271199735b3ab0254/transformed/lifecycle-viewmodel-compose-2.6.2/res
+com.launcherx.app-animation-core-release-39 /home/rishav/.gradle/caches/transforms-3/9f3ef1f2647d66cd156ebfc3d03fa7c7/transformed/animation-core-release/res
+com.launcherx.app-navigation-common-ktx-2.7.5-40 /home/rishav/.gradle/caches/transforms-3/a2f42bc69508601aaa6787cc4b35e853/transformed/navigation-common-ktx-2.7.5/res
+com.launcherx.app-runtime-release-41 /home/rishav/.gradle/caches/transforms-3/a3f17c2e79ffc36e758dd0c0706a5b4e/transformed/runtime-release/res
+com.launcherx.app-ui-geometry-release-42 /home/rishav/.gradle/caches/transforms-3/a50f25097523d496a94b269be33b077a/transformed/ui-geometry-release/res
+com.launcherx.app-hilt-navigation-compose-1.1.0-43 /home/rishav/.gradle/caches/transforms-3/a9a9542390d65ba1713b9b044408a81b/transformed/hilt-navigation-compose-1.1.0/res
+com.launcherx.app-lifecycle-viewmodel-2.6.2-44 /home/rishav/.gradle/caches/transforms-3/af94b53f2011647180a276f0f266ada1/transformed/lifecycle-viewmodel-2.6.2/res
+com.launcherx.app-ui-util-release-45 /home/rishav/.gradle/caches/transforms-3/b04cff6d6683351eb86c4f6eb0c08b02/transformed/ui-util-release/res
+com.launcherx.app-annotation-experimental-1.3.0-46 /home/rishav/.gradle/caches/transforms-3/b192f18e04d6a0ff0ff9f9ae0d931d49/transformed/annotation-experimental-1.3.0/res
+com.launcherx.app-biometric-1.1.0-47 /home/rishav/.gradle/caches/transforms-3/bf3e17867da054de7b431700351824ac/transformed/biometric-1.1.0/res
+com.launcherx.app-material3-1.1.2-48 /home/rishav/.gradle/caches/transforms-3/c874e3585a83d56038869cbafa02e3ec/transformed/material3-1.1.2/res
+com.launcherx.app-navigation-runtime-2.7.5-49 /home/rishav/.gradle/caches/transforms-3/c95d38fe1a2ad1bdeb874e5b68529d1b/transformed/navigation-runtime-2.7.5/res
+com.launcherx.app-room-ktx-2.6.1-50 /home/rishav/.gradle/caches/transforms-3/cc8ba89dcb86d2cd8cf3225db4687750/transformed/room-ktx-2.6.1/res
+com.launcherx.app-lifecycle-viewmodel-ktx-2.6.2-51 /home/rishav/.gradle/caches/transforms-3/cff791e65fdf3b1e67fe66dab557ea19/transformed/lifecycle-viewmodel-ktx-2.6.2/res
+com.launcherx.app-room-runtime-2.6.1-52 /home/rishav/.gradle/caches/transforms-3/d09352c77be790bdafb3436cf206b195/transformed/room-runtime-2.6.1/res
+com.launcherx.app-profileinstaller-1.3.1-53 /home/rishav/.gradle/caches/transforms-3/d3715dcc615e2efb6713a20de9b5b380/transformed/profileinstaller-1.3.1/res
+com.launcherx.app-emoji2-1.4.0-54 /home/rishav/.gradle/caches/transforms-3/d40bef7aa3016c3d396a1e3e28fc49ae/transformed/emoji2-1.4.0/res
+com.launcherx.app-startup-runtime-1.1.1-55 /home/rishav/.gradle/caches/transforms-3/daf6880350fb8ee0a7feeaa0dca8f4e7/transformed/startup-runtime-1.1.1/res
+com.launcherx.app-material-icons-core-release-56 /home/rishav/.gradle/caches/transforms-3/dfec46b1fa223ace8ef2a092082ed484/transformed/material-icons-core-release/res
+com.launcherx.app-core-1.12.0-57 /home/rishav/.gradle/caches/transforms-3/ee6f7157af34465f76ee20e364b541ef/transformed/core-1.12.0/res
+com.launcherx.app-customview-poolingcontainer-1.0.0-58 /home/rishav/.gradle/caches/transforms-3/eeaf614868e76c4a80c0560e6806f840/transformed/customview-poolingcontainer-1.0.0/res
+com.launcherx.app-appcompat-resources-1.6.1-59 /home/rishav/.gradle/caches/transforms-3/effdf55fbdc7f614e5ceaeac71fb6691/transformed/appcompat-resources-1.6.1/res
+com.launcherx.app-ui-graphics-release-60 /home/rishav/.gradle/caches/transforms-3/f1454d722d917edf99ecb2550898b034/transformed/ui-graphics-release/res
+com.launcherx.app-sqlite-2.4.0-61 /home/rishav/.gradle/caches/transforms-3/f353e3aabcea049ef820c5df02a6bd42/transformed/sqlite-2.4.0/res
+com.launcherx.app-navigation-runtime-ktx-2.7.5-62 /home/rishav/.gradle/caches/transforms-3/fea367b16a904686b24027253ab6964e/transformed/navigation-runtime-ktx-2.7.5/res
+com.launcherx.app-resValues-63 /home/rishav/Downloads/ios launcher/app/build/generated/res/resValues/debug
+com.launcherx.app-packageDebugResources-64 /home/rishav/Downloads/ios launcher/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.launcherx.app-packageDebugResources-65 /home/rishav/Downloads/ios launcher/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.launcherx.app-merged_res-66 /home/rishav/Downloads/ios launcher/app/build/intermediates/merged_res/debug
+com.launcherx.app-debug-67 /home/rishav/Downloads/ios launcher/app/src/debug/res
+com.launcherx.app-main-68 /home/rishav/Downloads/ios launcher/app/src/main/res
