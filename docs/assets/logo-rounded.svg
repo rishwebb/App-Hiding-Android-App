@@ -1,0 +1,43 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="46" y1="42" x2="456" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#73E5D1"/>
+      <stop offset="0.34" stop-color="#2ACCE8"/>
+      <stop offset="0.7" stop-color="#2C8DFF"/>
+      <stop offset="1" stop-color="#6865F9"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="143" y1="122" x2="374" y2="388" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B3770" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#152B7A" stop-opacity="0.50"/>
+    </linearGradient>
+    <linearGradient id="dotA" x1="182" y1="179" x2="338" y2="333" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#39C8FF"/>
+      <stop offset="1" stop-color="#6282FF"/>
+    </linearGradient>
+    <filter id="softShadow" x="92" y="89" width="328" height="340" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#11316F" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="84" fill="url(#bg)"/>
+  <circle cx="96" cy="86" r="110" fill="#FFFFFF" fill-opacity="0.10"/>
+  <circle cx="430" cy="84" r="84" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="418" cy="430" r="120" fill="#FFFFFF" fill-opacity="0.06"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="122" y="118" width="268" height="268" rx="66" fill="url(#panel)"/>
+    <g fill="url(#dotA)">
+      <circle cx="188" cy="184" r="29"/>
+      <circle cx="256" cy="184" r="29"/>
+      <circle cx="324" cy="184" r="29"/>
+
+      <circle cx="188" cy="252" r="29"/>
+      <circle cx="256" cy="252" r="29"/>
+      <circle cx="324" cy="252" r="29"/>
+
+      <circle cx="188" cy="320" r="29"/>
+      <circle cx="256" cy="320" r="29"/>
+      <circle cx="324" cy="320" r="29"/>
+    </g>
+  </g>
+</svg>

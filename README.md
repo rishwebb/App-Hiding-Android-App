@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="LauncherX logo" width="140" />
+  <img src="docs/assets/logo-rounded.svg" alt="LauncherX logo" width="140" />
 </p>
 
 <h1 align="center">LauncherX</h1>
